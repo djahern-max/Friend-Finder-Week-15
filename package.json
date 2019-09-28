@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/djahern-max/Friend-Finder-Week-15/issues"
   },
-  "homepage": "https://github.com/djahern-max/Friend-Finder-Week-15#readme"
+  "homepage": "https://github.com/djahern-max/Friend-Finder-Week-15#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
