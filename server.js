@@ -1,13 +1,35 @@
- let express = require('express')
- let app = express()
+ // Dependencies
+ // =============================================================
+ var express = require("express");
+ var bodyParser = require("body-parser");
+ var path = require("path");
 
- var PORT = 3000;
+ // Sets up the Express App
+ // =============================================================
+ var app = express();
+ var PORT = process.env.PORT || 3000;
 
- app.get('/', function(req, res) {
-     res.send('Hello World')
- })
+ // Sets up the Express app to handle data parsing
+ app.use(express.urlencoded({
+     extended: true
+ }));
 
- app.listen(3000) // Starts our server.
- server.listen(PORT, function() {
-     console.log("Server listening on: http://localhost:" + PORT);
+ app.use(express.json());
+
+ // parse application/text
+ app.use(bodyParser.text())
+
+ // parse some custom thing into a Buffer
+ app.use(bodyParser.raw({
+     type: 'application/vnd.api+json'
+ }))
+
+ app.use(express.static("app/public"));
+
+ require("./routes/apiRoutes")(app);
+ require("./routes/htmlRoutes")(app);
+
+
+ app.listen(PORT, function () {
+     console.log("App listening on PORT: " + PORT);
  });
