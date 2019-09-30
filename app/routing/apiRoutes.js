@@ -27,6 +27,8 @@ module.exports = function (app) {
             scores: b
         };
 
+        console.log(userData);
+
         console.log("Name: " + userName);
         console.log("User Score " + userScores);
 
