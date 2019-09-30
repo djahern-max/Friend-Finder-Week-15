@@ -35,32 +35,36 @@ module.exports = function (app) {
         var sum = b.reduce((a, b) => a + b, 0);
 
         console.log("Total combined score = " + sum);
-        console.log("Best match friend diff " + bestMatch.friendDifference);
+
+        console.log("<<==============================>>");
+        console.log("++++++++++++++++++++++++++++++++++");
+        console.log("<<==============================>>");
+        console.log(".....AND THE CONTESTANTS ARE......");
+        console.log("<<==============================>>");
+        console.log("++++++++++++++++++++++++++++++++++");
         console.log("<<==============================>>");
 
         for (var i = 0; i < friends.length; i++) {
             console.log(friends[i].name);
             totalDifference = 0;
-            // console.log("Total Diff " + totalDifference);
-            // console.log("Best match friend diff " + bestMatch.friendDifference);
 
             var bfriendScore = friends[i].scores.reduce((a, b) => a + b, 0);
-            console.log("This person's score is " + bfriendScore);
+            console.log("WITH A SCORE OF... " + bfriendScore);
             totalDifference += Math.abs(sum - bfriendScore);
-            console.log("The difference between your score and their's is ===> " + totalDifference);
+            console.log("THE DIFFERENCE BETWEEN YOUR SCORE AND THEIR'S IS ===> " + totalDifference);
 
             if (totalDifference <= bestMatch.friendDifference) {
                 bestMatch.name = friends[i].name;
                 bestMatch.photo = friends[i].photo;
                 bestMatch.friendDifference = totalDifference;
             }
-            // console.log(totalDifference + " Total Difference");
         }
-        // console.log(bestMatch);
+        console.log(".....AND THE WINNDER IS......");
+        console.log(bestMatch);
 
         friends.push(userData);
-        // console.log("New user added");
-        // console.log(userData);
+        console.log("New user added to database");
+        console.log(userData);
         res.json(bestMatch);
     });
 };
