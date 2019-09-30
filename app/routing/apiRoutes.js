@@ -27,40 +27,40 @@ module.exports = function (app) {
             scores: b
         };
 
-        console.log(userData);
+        // console.log(userData);
 
-        console.log("Name: " + userName);
+        console.log("User Name: " + userName);
         console.log("User Score " + userScores);
 
         var sum = b.reduce((a, b) => a + b, 0);
 
-        console.log("Sum of users score " + sum);
+        console.log("Total combined score = " + sum);
         console.log("Best match friend diff " + bestMatch.friendDifference);
-        console.log("+++++++=================++++++++++");
+        console.log("<<==============================>>");
 
         for (var i = 0; i < friends.length; i++) {
             console.log(friends[i].name);
             totalDifference = 0;
-            console.log("Total Diff " + totalDifference);
-            console.log("Best match friend diff " + bestMatch.friendDifference);
+            // console.log("Total Diff " + totalDifference);
+            // console.log("Best match friend diff " + bestMatch.friendDifference);
 
             var bfriendScore = friends[i].scores.reduce((a, b) => a + b, 0);
-            console.log("Total friend score " + bfriendScore);
+            console.log("This person's score is " + bfriendScore);
             totalDifference += Math.abs(sum - bfriendScore);
-            console.log("-------------------------> " + totalDifference);
+            console.log("The difference between your score and their's is ===> " + totalDifference);
 
             if (totalDifference <= bestMatch.friendDifference) {
                 bestMatch.name = friends[i].name;
                 bestMatch.photo = friends[i].photo;
                 bestMatch.friendDifference = totalDifference;
             }
-            console.log(totalDifference + " Total Difference");
+            // console.log(totalDifference + " Total Difference");
         }
-        console.log(bestMatch);
+        // console.log(bestMatch);
 
         friends.push(userData);
-        console.log("New user added");
-        console.log(userData);
+        // console.log("New user added");
+        // console.log(userData);
         res.json(bestMatch);
     });
 };
